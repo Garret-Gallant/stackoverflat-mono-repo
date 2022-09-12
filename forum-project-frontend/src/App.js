@@ -1,5 +1,6 @@
 import logo from "./logo.svg";
 import { useState, useEffect } from "react";
+import SignUp from "./SignUp";
 import "./App.css";
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
   return (
     <div className="App">
       <h1>Page Count: {count}</h1>
+      <SignUp />
     </div>
   );
 }
