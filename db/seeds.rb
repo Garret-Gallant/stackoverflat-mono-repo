@@ -19,13 +19,24 @@ u4 = User.create(username: Faker::Cannabis.unique.strain, password: Faker::Lorem
                  email: "#{Faker::Name.first_name}.#{Faker::Name.last_name}@faker.com", is_admin: false)
 u5 = User.create(username: Faker::Cannabis.unique.strain, password: Faker::Lorem.unique,
                  email: "#{Faker::Name.first_name}.#{Faker::Name.last_name}@faker.com", is_admin: false)
+# Create test categories
+cat1 = Category.create(name: Faker::Beer.brand)
+cat2 = Category.create(name: Faker::Beer.brand)
+cat3 = Category.create(name: Faker::Beer.brand)
+cat4 = Category.create(name: Faker::Beer.brand)
+cat5 = Category.create(name: Faker::Beer.brand)
 
 # Create test posts
-p1 = Post.create(title: Faker::Lorem.unique.sentence, body: Faker::Lorem.unique.paragraph, user_id: u1.id)
-p2 = Post.create(title: Faker::Lorem.unique.sentence, body: Faker::Lorem.unique.paragraph, user_id: u2.id)
-p3 = Post.create(title: Faker::Lorem.unique.sentence, body: Faker::Lorem.unique.paragraph, user_id: u3.id)
-p4 = Post.create(title: Faker::Lorem.unique.sentence, body: Faker::Lorem.unique.paragraph, user_id: u4.id)
-p5 = Post.create(title: Faker::Lorem.unique.sentence, body: Faker::Lorem.unique.paragraph, user_id: u5.id)
+p1 = Post.create(title: Faker::Lorem.unique.sentence, body: Faker::Lorem.unique.paragraph, user_id: u1.id,
+                 category_id: cat1.id)
+p2 = Post.create(title: Faker::Lorem.unique.sentence, body: Faker::Lorem.unique.paragraph, user_id: u2.id,
+                 category_id: cat2.id)
+p3 = Post.create(title: Faker::Lorem.unique.sentence, body: Faker::Lorem.unique.paragraph, user_id: u3.id,
+                 category_id: cat3.id)
+p4 = Post.create(title: Faker::Lorem.unique.sentence, body: Faker::Lorem.unique.paragraph, user_id: u4.id,
+                 category_id: cat4.id)
+p5 = Post.create(title: Faker::Lorem.unique.sentence, body: Faker::Lorem.unique.paragraph, user_id: u5.id,
+                 category_id: cat5.id)
 
 # Create test comments
 c1 = Comment.create(body: Faker::Lorem.unique.paragraph, user_id: u1.id, post_id: p1.id)
