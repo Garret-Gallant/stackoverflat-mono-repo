@@ -10,4 +10,10 @@ puts "Seeding Data..."
 
 # Create test users
 
+# Create test posts
+
+# Create test comments
+
+# Create test likes
+
 
