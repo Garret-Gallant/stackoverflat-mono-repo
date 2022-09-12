@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # README
 
 This README would normally document whatever steps are necessary to get the
@@ -22,3 +23,6 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+=======
+# stackoverflat-mono-repo # stackoverflat-mono-repo
+>>>>>>> b0099452105f87830d63520c0624b7e61a932c99
