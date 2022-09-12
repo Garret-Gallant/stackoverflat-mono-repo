@@ -4,3 +4,8 @@
 require_relative "config/application"
 
 Rails.application.load_tasks
+
+desc "start postgresql server"
+task :start_psql do
+  sudo service postgresql start
+end
