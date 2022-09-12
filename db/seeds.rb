@@ -9,11 +9,11 @@
 puts "Seeding Data..."
 
 # Create test users
-u1 = User.create(username: Faker::Cannabis.unique.strain, password: Faker::Lorem.unique) 
-u2 = User.create(username: Faker::Cannabis.unique.strain, password: Faker::Lorem.unique)
-u3 = User.create(username: Faker::Cannabis.unique.strain, password: Faker::Lorem.unique)
-u4 = User.create(username: Faker::Cannabis.unique.strain, password: Faker::Lorem.unique)
-u5 = User.create(username: Faker::Cannabis.unique.strain, password: Faker::Lorem.unique)
+u1 = User.create(username: Faker::Cannabis.unique.strain, password: Faker::Lorem.unique, email: "#{Faker::name.first_name}.#{Faker::name.last_name}@faker.com", is_admin: true) 
+u2 = User.create(username: Faker::Cannabis.unique.strain, password: Faker::Lorem.unique, email: "#{Faker::name.first_name}.#{Faker::name.last_name}@faker.com", is_admin: false)
+u3 = User.create(username: Faker::Cannabis.unique.strain, password: Faker::Lorem.unique, email: "#{Faker::name.first_name}.#{Faker::name.last_name}@faker.com", is_admin: false)
+u4 = User.create(username: Faker::Cannabis.unique.strain, password: Faker::Lorem.unique, email: "#{Faker::name.first_name}.#{Faker::name.last_name}@faker.com", is_admin: false)
+u5 = User.create(username: Faker::Cannabis.unique.strain, password: Faker::Lorem.unique, email: "#{Faker::name.first_name}.#{Faker::name.last_name}@faker.com", is_admin: false)
 
 # Create test posts
 p1 = Post.create(title: Faker::Lorem.unique.sentence, body: Faker::Lorem.unique.paragraph, user_id: u1.id)
