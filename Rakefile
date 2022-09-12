@@ -7,5 +7,5 @@ Rails.application.load_tasks
 
 desc "start postgresql server"
 task :start_psql do
-  sudo service postgresql start
+  sh "sudo service postgresql start"
 end
