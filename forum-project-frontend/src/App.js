@@ -7,18 +7,14 @@ import "./App.css";
 function App() {
   const [user, setUser] = useState({});
 
-  useEffect(() => {
-    fetch("/me").then((response) => {
-      if (response.ok) {
-        response.json().then((user) => setUser(user));
-      }
-    });
-  }, []);
-
   const onLogin = () => {
     fetch("/me")
-      .then((r) => r.json)
-      .then((data) => setUser(data.user));
+      .then((r) => r.json())
+      .then((data) => setUser(data));
+  };
+
+  const handleLogout = () => {
+    fetch("/logout", { method: "DELETE" }).then(() => setUser({}));
   };
 
   return (
@@ -29,7 +25,8 @@ function App() {
           React and Tailwind CSS in action
         </p>
       </div>
-      {user ? <h2>User: {user.username}</h2> : "Not logged in."}
+      {Object.keys(user) ? <h2>User: {user.username}</h2> : "Not logged in."}
+      <button onClick={handleLogout}>Logout</button>
       <h1>Login</h1>
       <Login onLogin={onLogin} />
       <h1>Signup</h1>

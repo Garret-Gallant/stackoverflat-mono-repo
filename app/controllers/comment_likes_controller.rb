@@ -4,7 +4,7 @@ class CommentLikesController < ApplicationController
   end
 
   def create
-    render json: CommentLike.create!autoload(comment_like_params)
+    render json: CommentLike.create!(comment_like_params)
   end
 
   def destroy
