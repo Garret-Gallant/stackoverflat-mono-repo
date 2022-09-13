@@ -33,6 +33,7 @@ function SignUp({ onLogin }) {
         value={email}
         onChange={(e) => setEmail(e.target.value)}
       />
+      <br/>
       <label htmlFor="username">Username: </label>
       <input
         type="text"
@@ -40,6 +41,7 @@ function SignUp({ onLogin }) {
         value={username}
         onChange={(e) => setUsername(e.target.value)}
       />
+      <br/>
       <label htmlFor="password">Password: </label>
       <input
         type="password"
@@ -47,6 +49,7 @@ function SignUp({ onLogin }) {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
+      <br/>
       <label htmlFor="password_confirmation">Confirm Password: </label>
       <input
         type="password"
@@ -54,6 +57,7 @@ function SignUp({ onLogin }) {
         value={passwordConfirmation}
         onChange={(e) => setPasswordConfirmation(e.target.value)}
       />
+      <br/>
       <button type="submit">Submit</button>
     </form>
   );
