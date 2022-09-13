@@ -2,6 +2,7 @@ import { useState } from "react";
 
 function SignUp({ onLogin }) {
   const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
 
@@ -14,6 +15,7 @@ function SignUp({ onLogin }) {
       },
       body: JSON.stringify({
         email,
+        username,
         password,
         password_confirmation: passwordConfirmation,
       }),
@@ -24,21 +26,28 @@ function SignUp({ onLogin }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <label htmlFor="email">Email:</label>
+      <label htmlFor="email">Email: </label>
       <input
         type="text"
         id="email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
       />
-      <label htmlFor="password">Password:</label>
+      <label htmlFor="username">Username: </label>
+      <input
+        type="text"
+        id="username"
+        value={username}
+        onChange={(e) => setUsername(e.target.value)}
+      />
+      <label htmlFor="password">Password: </label>
       <input
         type="password"
         id="password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      <label htmlFor="password_confirmation">Confirm Password:</label>
+      <label htmlFor="password_confirmation">Confirm Password: </label>
       <input
         type="password"
         id="password_confirmation"
