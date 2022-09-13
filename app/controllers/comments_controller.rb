@@ -8,7 +8,12 @@ class CommentsController < ApplicationController
   end
 
   def update
-    render json: Comment.update!(params[:id], comment_params)
+    comment = Comment.find(params[:id])
+    if @current_user == comment.user
+      render json: Comment.update!(params[:id], comment_params), status: :ok
+    else
+      render json: { error: 'Not your comment.' }, status: :unauthorized
+    end
   end
 
   private

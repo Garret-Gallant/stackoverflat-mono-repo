@@ -14,9 +14,9 @@ function SignUp({ onLogin }) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        email,
-        username,
-        password,
+        username: username,
+        email: email,
+        password: password,
         password_confirmation: passwordConfirmation,
       }),
     })
@@ -33,6 +33,7 @@ function SignUp({ onLogin }) {
         value={email}
         onChange={(e) => setEmail(e.target.value)}
       />
+      <br/>
       <label htmlFor="username">Username: </label>
       <input
         type="text"
@@ -40,22 +41,23 @@ function SignUp({ onLogin }) {
         value={username}
         onChange={(e) => setUsername(e.target.value)}
       />
+      <br/>
       <label htmlFor="password">Password: </label>
       <input
         type="password"
         id="password"
-        secureTextEntry={true}
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
+      <br/>
       <label htmlFor="password_confirmation">Confirm Password: </label>
       <input
         type="password"
         id="password_confirmation"
-        secureTextEntry={true}
         value={passwordConfirmation}
         onChange={(e) => setPasswordConfirmation(e.target.value)}
       />
+      <br/>
       <button type="submit">Submit</button>
     </form>
   );

@@ -18,6 +18,8 @@ function Login({ onLogin }) {
   }
 
   return (
+    <div>
+      
     <form onSubmit={handleSubmit}>
       <label htmlFor="email">Email: </label>
       <input
@@ -27,13 +29,13 @@ function Login({ onLogin }) {
       />
       <label htmlFor="password">Password: </label>
       <input
-        type="text"
-        secureTextEntry={true}
+        type="password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
       <button type="submit">Login</button>
     </form>
+    </div>
   );
 }
 

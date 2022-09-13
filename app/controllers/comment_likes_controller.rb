@@ -4,11 +4,15 @@ class CommentLikesController < ApplicationController
   end
 
   def create
-    render json: CommentLike.create(comment_like_params)
+    render json: CommentLike.create!(comment_like_params)
   end
 
   def destroy
-    render json: CommentLike.destroy(params[:id])
+    if @current_user == CommentLike.find(params[:id]).user
+      render json: CommentLike.destroy!(params[:id])
+    else
+      render json: { error: 'Not your comment like.' }, status: :unauthorized
+    end
   end
 
   private
