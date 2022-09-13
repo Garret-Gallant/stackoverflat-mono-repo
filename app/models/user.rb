@@ -1,5 +1,8 @@
 require 'uri'
+
 class User < ApplicationRecord
+  has_secure_password
+
   has_many :post_likes
   has_many :comment_likes
   has_many :posts
@@ -11,6 +14,6 @@ class User < ApplicationRecord
   private
 
   def downcase_email
-    self.email = email.downcase
+    self.email = email.downcase.squish
   end
 end

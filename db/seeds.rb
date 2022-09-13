@@ -9,16 +9,17 @@
 puts 'Seeding Data...'
 
 # Create test users
-u1 = User.create(username: Faker::Cannabis.unique.strain, password: Faker::Lorem.unique,
-                 email: "#{Faker::Name.first_name}.#{Faker::Name.last_name}@faker.com", is_admin: true)
-u2 = User.create(username: Faker::Cannabis.unique.strain, password: Faker::Lorem.unique,
-                 email: "#{Faker::Name.first_name}.#{Faker::Name.last_name}@faker.com", is_admin: false)
-u3 = User.create(username: Faker::Cannabis.unique.strain, password: Faker::Lorem.unique,
-                 email: "#{Faker::Name.first_name}.#{Faker::Name.last_name}@faker.com", is_admin: false)
-u4 = User.create(username: Faker::Cannabis.unique.strain, password: Faker::Lorem.unique,
-                 email: "#{Faker::Name.first_name}.#{Faker::Name.last_name}@faker.com", is_admin: false)
-u5 = User.create(username: Faker::Cannabis.unique.strain, password: Faker::Lorem.unique,
-                 email: "#{Faker::Name.first_name}.#{Faker::Name.last_name}@faker.com", is_admin: false)
+u1 = User.create(email: Faker::Internet.email, username: Faker::Beer.brand + rand(1000).to_s,
+                 password: Faker::Internet.password)
+u2 = User.create(email: Faker::Internet.email, username: Faker::Beer.brand + rand(1000).to_s,
+                 password: Faker::Internet.password)
+u3 = User.create(email: Faker::Internet.email, username: Faker::Beer.brand + rand(1000).to_s,
+                 password: Faker::Internet.password)
+u4 = User.create(email: Faker::Internet.email, username: Faker::Beer.brand + rand(1000).to_s,
+                 password: Faker::Internet.password)
+u5 = User.create(email: Faker::Internet.email, username: Faker::Beer.brand + rand(1000).to_s,
+                 password: Faker::Internet.password)
+
 # Create test categories
 cat1 = Category.create(name: Faker::Beer.brand)
 cat2 = Category.create(name: Faker::Beer.brand)
