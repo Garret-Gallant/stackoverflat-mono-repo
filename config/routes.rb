@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
-  resources :comment_likes
-  resources :comments
-  resources :post_likes
-  resources :posts
-  resources :categories
-  resources :users
+  resources :comment_likes, only: [:show, :create, :destroy]
+  resources :comments, only: [:show, :create, :update]
+  resources :post_likes, only: [:show, :create, :destroy]
+  resources :posts, only: [:index, :show, :create, :update]
+  resources :categories, only: [:index, :show]
+  resources :users, only: [:index, :show, :create, :update]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
