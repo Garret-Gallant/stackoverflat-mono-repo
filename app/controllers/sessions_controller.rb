@@ -1,9 +1,9 @@
 class SessionsController < ApplicationController
   skip_before_action :authorize, only: :create
 
-  #Check if session already exists
+  # Check if session already exists
   def create
-    if session[:user_id]
+    if logged_in?
       render json: { error: 'Already logged in.' }, status: :unauthorized
     else
       user = User.find_by(email: params[:email])
@@ -14,6 +14,10 @@ class SessionsController < ApplicationController
         render json: { error: 'Invalid email or password' }, status: :unauthorized
       end
     end
+  end
+
+  def logged_in?
+    !!session[:user_id]
   end
 
   def destroy
