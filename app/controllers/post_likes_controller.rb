@@ -4,11 +4,11 @@ class PostLikesController < ApplicationController
   end
 
   def create
-    render json: PostLike.create(post_like_params)
+    render json: PostLike.create!(post_like_params)
   end
 
   def destroy
-    render json: PostLike.destroy(params[:id])
+    render json: PostLike.destroy!(params[:id])
   end
 
   private
