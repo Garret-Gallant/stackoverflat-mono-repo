@@ -8,7 +8,11 @@ class PostLikesController < ApplicationController
   end
 
   def destroy
-    render json: PostLike.destroy!(params[:id])
+    if @current_user == PostLike.find(params[:id]).user
+      render json: PostLike.destroy!(params[:id])
+    else
+      render json: { error: 'Not your post like.' }, status: :unauthorized
+    end
   end
 
   private

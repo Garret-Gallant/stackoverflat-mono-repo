@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  skip_before_action :authorize, only: %w[index show]
   def index
     render json: Post.all
   end
@@ -12,7 +13,12 @@ class PostsController < ApplicationController
   end
 
   def update
-    render json: Post.update!(params[:id], post_params)
+    post = Post.find(params[:id])
+    if @current_user == post.user
+      render json: Post.update!(params[:id], post_params), status: :ok
+    else
+      render json: { error: 'Not your post.' }, status: :unauthorized
+    end
   end
 
   private
