@@ -18,6 +18,8 @@ function Login({ onLogin }) {
   }
 
   return (
+    <div>
+      
     <form onSubmit={handleSubmit}>
       <label htmlFor="email">Email: </label>
       <input
@@ -33,6 +35,7 @@ function Login({ onLogin }) {
       />
       <button type="submit">Login</button>
     </form>
+    </div>
   );
 }
 
