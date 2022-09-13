@@ -44,7 +44,6 @@ function SignUp({ onLogin }) {
       <input
         type="password"
         id="password"
-        secureTextEntry={true}
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
@@ -52,7 +51,6 @@ function SignUp({ onLogin }) {
       <input
         type="password"
         id="password_confirmation"
-        secureTextEntry={true}
         value={passwordConfirmation}
         onChange={(e) => setPasswordConfirmation(e.target.value)}
       />

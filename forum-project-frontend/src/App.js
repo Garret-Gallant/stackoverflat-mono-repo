@@ -2,7 +2,7 @@ import logo from "./logo.svg";
 import { useState, useEffect } from "react";
 import SignUp from "./SignUp";
 import Login from "./Login";
-import "./App.css";
+import "./index.css";
 
 function App() {
   const [user, setUser] = useState({});
