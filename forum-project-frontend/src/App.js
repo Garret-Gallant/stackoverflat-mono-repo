@@ -5,12 +5,14 @@ import Login from "./Login";
 import "./index.css";
 
 function App() {
-  const [count, setCount] = useState(0);
   const [user, setUser] = useState({});
+
   useEffect(() => {
-    fetch("/hello")
-      .then((r) => r.json())
-      .then((data) => setCount(data.count));
+    fetch("/me").then((response) => {
+      if (response.ok) {
+        response.json().then((user) => setUser(user));
+      }
+    });
   }, []);
 
   const onLogin = () => {
@@ -27,7 +29,6 @@ function App() {
           React and Tailwind CSS in action
         </p>
       </div>
-      <h1>Page Count: {count}</h1>
       {user ? <h2>User: {user.username}</h2> : "Not logged in."}
       <h1>Login</h1>
       <Login onLogin={onLogin} />
