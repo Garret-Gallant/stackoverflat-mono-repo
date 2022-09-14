@@ -4,16 +4,16 @@ function PostForm({ user }) {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [categories, setCategories] = useState([]);
+  const [categoryId, setCategoryId] = useState("");
 
   useEffect(() => {
     fetch("/categories")
       .then((r) => r.json())
       .then((data) => setCategories(data));
-  });
+  }, []);
 
   function handleSubmit(e) {
-    e.preventDefault();
-    fetch("/view-post", {
+    fetch("/post", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -22,6 +22,7 @@ function PostForm({ user }) {
         user_id: user.id,
         title: title,
         body: body,
+        category_id: categoryId,
       }),
     })
       .then((r) => r.json())
@@ -34,6 +35,13 @@ function PostForm({ user }) {
     <div className="w-fit m-auto">
       <h2 className="text-center">New post</h2>
       <form className="space-y-2" onSubmit={handleSubmit}>
+        <select onChange={(e) => setCategoryId(e.target.value)}>
+          {categories.map((category) => (
+            <option key={category.id} value={category.id}>
+              {category.name}
+            </option>
+          ))}
+        </select>
         <input
           type="text"
           value={title}

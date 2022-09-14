@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get '/me/comment_likes', to: 'users#show_comment_likes'
   get '/me/post_likes', to: 'users#show_post_likes'
   post '/signup', to: 'users#create'
+  post '/post', to: 'posts#create'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
 end
