@@ -1,10 +1,10 @@
 class SessionsController < ApplicationController
   skip_before_action :authorize, only: :create
 
-  # Check if session already exists
+  # Check if session already exists/Create session
   def create
     if logged_in?
-      render json: { error: 'Already logged in.' }, status: :unauthorized
+      render json: { error: 'Already logged in.' }, status: 418
     else
       user = User.find_by(email: params[:email])
       if user&.authenticate(params[:password])

@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import { Link } from "react-router-dom";
 function Login({ onLogin }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -18,23 +18,27 @@ function Login({ onLogin }) {
   }
 
   return (
-    <div>
-      
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="email">Email: </label>
-      <input
-        type="text"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <label htmlFor="password">Password: </label>
-      <input
-        type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <button type="submit">Login</button>
-    </form>
+    <div className="user-form">
+      <h2 className="font-bold">User Login</h2>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="email">Email: </label>
+        <input
+          type="text"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <label htmlFor="password">Password: </label>
+        <input
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button type="submit">
+          <Link to="/home" />
+          Login
+          <Link />
+        </button>
+      </form>
     </div>
   );
 }

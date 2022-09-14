@@ -25,41 +25,44 @@ function SignUp({ onLogin }) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="email">Email: </label>
-      <input
-        type="text"
-        id="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <br/>
-      <label htmlFor="username">Username: </label>
-      <input
-        type="text"
-        id="username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-      />
-      <br/>
-      <label htmlFor="password">Password: </label>
-      <input
-        type="password"
-        id="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <br/>
-      <label htmlFor="password_confirmation">Confirm Password: </label>
-      <input
-        type="password"
-        id="password_confirmation"
-        value={passwordConfirmation}
-        onChange={(e) => setPasswordConfirmation(e.target.value)}
-      />
-      <br/>
-      <button type="submit">Submit</button>
-    </form>
+    <div className="user-form">
+      <h2 className="font-bold">Signup</h2>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="email">Email: </label>
+        <input
+          type="text"
+          id="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <br />
+        <label htmlFor="username">Username: </label>
+        <input
+          type="text"
+          id="username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        <br />
+        <label htmlFor="password">Password: </label>
+        <input
+          type="password"
+          id="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <br />
+        <label htmlFor="password_confirmation">Confirm Password: </label>
+        <input
+          type="password"
+          id="password_confirmation"
+          value={passwordConfirmation}
+          onChange={(e) => setPasswordConfirmation(e.target.value)}
+        />
+        <br />
+        <button type="submit">Submit</button>
+      </form>
+    </div>
   );
 }
 

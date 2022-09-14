@@ -61,13 +61,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_12_222405) do
 
   create_table "users", force: :cascade do |t|
     t.string "username"
-    t.string "password"
     t.string "email"
+    t.string "password_digest"
+    t.boolean "is_admin", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "is_admin"
-    t.datetime "confirmed_at"
-    t.string "password_digest"
   end
 
   add_foreign_key "comment_likes", "comments"
