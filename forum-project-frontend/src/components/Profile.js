@@ -5,6 +5,11 @@ const Profile = ({ user }) => {
   const [cardToShow, setCardToShow] = useState("info");
   const [component, setComponent] = useState("");
 
+  //Rerender the correct component based on the cardToShow state
+  useEffect(() => {
+    renderComponent();
+  }, [cardToShow]);
+
   const handleCardToShow = (e) => {
     console.log(e.target.id);
     setCardToShow(e.target.id);

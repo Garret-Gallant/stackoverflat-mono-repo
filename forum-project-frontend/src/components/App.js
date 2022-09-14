@@ -3,16 +3,30 @@ import SignUp from "./SignUp";
 import Login from "./Login";
 import NavBar from "./NavBar";
 import Profile from "./Profile";
+import Home from "./Home";
+import Landing from "./Landing";
 import { Route, Routes } from "react-router-dom";
 import "../index.css";
 
 function App() {
   const [user, setUser] = useState({});
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [posts, setPosts] = useState([]);
 
   const onLogin = () => {
     fetch("/me")
       .then((r) => r.json())
-      .then((data) => setUser(data));
+      .then((data) => setUser(data))
+      .then(setLoggedIn(true))
+      .then(fetchPosts());
+  };
+
+  const fetchPosts = (param = "") => {
+    let pageinated = param ? `?page=${param}` : "";
+    fetch("/posts")
+      .then((r) => r.json())
+      .then((data) => setPosts(data))
+      .then(console.log(posts));
   };
 
   const handleLogout = () => {
@@ -23,7 +37,12 @@ function App() {
     <div>
       <NavBar user={user} handleLogout={handleLogout} />
       <Routes>
-        <Route exact path="/" />
+        <Route exact path="/" element={<Landing />} />
+        <Route
+          exact
+          path="/home"
+          element={<Home posts={posts} fetchPosts={fetchPosts} />}
+        />
         <Route path="/view-posts" />
         <Route path="/create-post" />
         <Route path="/login" element={<Login onLogin={onLogin} />} />
