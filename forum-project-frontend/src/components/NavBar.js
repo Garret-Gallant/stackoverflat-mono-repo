@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
+// Having them split up makes sense to me here. Combine them if you prefer.
 function NavBar({ user, handleLogout }) {
   return (
     <div className="flex">
@@ -27,20 +28,7 @@ const NavBarTop = ({ user, handleLogout }) => {
       <NavLink className="nav-button" to="/user-profile">
         <span>Profile </span>
       </NavLink>
-      {user.username !== "Anonymous" && user.username !== undefined ? (
-        <NavLink className="nav-button" to="/">
-          <button onClick={handleLogout}>Logout</button>
-        </NavLink>
-      ) : (
-        <>
-          <NavLink className="nav-button" to="/login">
-            <button> Log in </button>
-          </NavLink>
-          <NavLink className="nav-button" to="/signup">
-            <button> Sign up </button>
-          </NavLink>
-        </>
-      )}
+      <button onClick={handleLogout}>Logout</button>
     </div>
   );
 };
