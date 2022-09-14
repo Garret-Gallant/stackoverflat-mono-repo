@@ -25,8 +25,7 @@ function App() {
     let pageinated = param ? `?page=${param}` : "";
     fetch("/posts")
       .then((r) => r.json())
-      .then((data) => setPosts(data))
-      .then(console.log(posts));
+      .then((data) => setPosts(data));
   };
 
   const handleLogout = () => {
@@ -37,7 +36,7 @@ function App() {
     <div>
       <NavBar user={user} handleLogout={handleLogout} />
       <Routes>
-        <Route exact path="/" element={<Landing />} />
+        <Route exact path="/" element={<Landing onLogin={onLogin} />} />
         <Route
           exact
           path="/home"
@@ -54,11 +53,3 @@ function App() {
 }
 
 export default App;
-
-{
-  /*   <NavLink className='nav-button' to="/">Home</NavLink>
-      <NavLink className='nav-button' to="/create-account">Create Account</NavLink>
-      <NavLink className='nav-button' to="/view-posts">View Posts</NavLink>
-      <NavLink className='nav-button' to="/create-post">Make A Post</NavLink>
-      <NavLink className='nav-button' to="/user-profile">Profile</NavLink> */
-}

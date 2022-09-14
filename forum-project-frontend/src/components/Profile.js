@@ -40,30 +40,32 @@ const Profile = ({ user }) => {
 
   return (
     <div className="profile">
-      <div className="profileCardSelect">
+      <div className="profileCardSelect w-fit m-auto">
         <span id="info" onClick={handleCardToShow}>
-          Info{" "}
+          Info
         </span>
         <span id="submitted" onClick={handleCardToShow}>
-          Submissions{" "}
+          Submissions
         </span>
         <span id="comments" onClick={handleCardToShow}>
-          Comments{" "}
+          Comments
         </span>
         <span id="liked" onClick={handleCardToShow}>
-          Liked Posts{" "}
+          Liked Posts
         </span>
         <span id="liked_comments" onClick={handleCardToShow}>
-          Liked Comments{" "}
+          Liked Comments
         </span>
       </div>
-      <div className="cardToShow">{component}</div>
+      <div className="cardToShow w-fit m-auto">{component}</div>
     </div>
   );
 };
 
 const UserInfo = ({ user }) => {
-  return (
+  return user.username === undefined || user.username === "Anonymous" ? (
+    <div>Nothing to display</div>
+  ) : (
     <div>
       <ul>
         <li>Username: {user.username}</li>
