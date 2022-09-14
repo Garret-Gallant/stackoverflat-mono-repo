@@ -65,7 +65,7 @@ function App() {
           element={<Home posts={posts} fetchPosts={fetchPosts} />}
         />
         <Route path="/view-posts" element={<PostList />} />
-        <Route path="/create-post" element={<PostForm />} />
+        <Route path="/create-post" element={<PostForm user={user} />} />
         <Route path="/login" element={<Login onLogin={onLogin} />} />
         <Route path="/create-account" element={<SignUp onLogin={onLogin} />} />
         <Route path="/user-profile" element={<Profile user={user} />} />
