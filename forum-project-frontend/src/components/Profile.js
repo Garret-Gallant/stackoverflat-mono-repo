@@ -1,6 +1,10 @@
 import React from "react";
 import { useState, useEffect } from "react";
 
+
+
+
+
 //I was just getting the data from the backend, but I'm not sure how to display it
 //I put all the components in one file bc laziness feel free to fix
 const Profile = ({ user }) => {
