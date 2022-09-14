@@ -47,10 +47,11 @@ function App() {
       .then((data) => setPosts(data));
   };
 
+  const goToHomePage = () => navigate("/home");
+  const goToLangingPage = () => navigate("/");
+
   //Redirects to the home on login and landing on logout
   useEffect(() => {
-    const goToHomePage = () => navigate("/home");
-    const goToLangingPage = () => navigate("/");
     loggedIn ? goToHomePage() : goToLangingPage();
   }, [loggedIn]);
 
@@ -65,7 +66,10 @@ function App() {
           element={<Home posts={posts} fetchPosts={fetchPosts} />}
         />
         <Route path="/view-posts" element={<PostList />} />
-        <Route path="/create-post" element={<PostForm user={user} />} />
+        <Route
+          path="/create-post"
+          element={<PostForm user={user} onSubmit={goToHomePage} />}
+        />
         <Route path="/login" element={<Login onLogin={onLogin} />} />
         <Route path="/create-account" element={<SignUp onLogin={onLogin} />} />
         <Route path="/user-profile" element={<Profile user={user} />} />

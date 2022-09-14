@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-function PostForm({ user }) {
+function PostForm({ user, onSubmit }) {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [categories, setCategories] = useState([]);
@@ -13,6 +13,7 @@ function PostForm({ user }) {
   }, []);
 
   function handleSubmit(e) {
+    e.preventDefault();
     fetch("/post", {
       method: "POST",
       headers: {
@@ -26,9 +27,7 @@ function PostForm({ user }) {
       }),
     })
       .then((r) => r.json())
-      .then((newPost) => {
-        console.log();
-      });
+      .then(onSubmit());
   }
 
   return (
