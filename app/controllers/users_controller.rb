@@ -22,7 +22,7 @@ class UsersController < ApplicationController
   end
 
   def show_post_likes
-    render json: @current_user.post_likes.post.map(&:post)
+    render json: @current_user.post_likes.map(&:post)
   end
 
   def create

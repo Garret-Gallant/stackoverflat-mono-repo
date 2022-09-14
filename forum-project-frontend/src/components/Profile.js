@@ -1,10 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
 
-
-
-
-
 //I was just getting the data from the backend, but I'm not sure how to display it
 //I put all the components in one file bc laziness feel free to fix
 const Profile = ({ user }) => {
@@ -17,7 +13,6 @@ const Profile = ({ user }) => {
   }, [cardToShow]);
 
   const handleCardToShow = (e) => {
-    console.log(e.target.id);
     setCardToShow(e.target.id);
     renderComponent();
   };
@@ -92,7 +87,19 @@ const SubmittedPosts = () => {
       .then((data) => setPosts(data));
   }, []);
 
-  return posts.length > 0 ? <div>{posts}</div> : <div>Nothing to display</div>;
+  if (posts.length > 0) {
+    return posts.map((post) => {
+      return (
+        <ul key={post.id}>
+          <li className="font-bold">-{post.category.name}-</li>
+          <li>{post.title}</li>
+          <li>{post.body}</li>
+          <li>submitted: {post.user.username}</li>
+          <li className="hover:cursor-pointer">view comments</li>
+        </ul>
+      );
+    });
+  }
 };
 
 const SubmittedComments = () => {
