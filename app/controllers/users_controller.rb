@@ -9,6 +9,22 @@ class UsersController < ApplicationController
     render json: @current_user
   end
 
+  def show_posts
+    render json: @current_user.posts
+  end
+
+  def show_comments
+    render json: @current_user.comments
+  end
+
+  def show_comment_likes
+    render json: @current_user.comment_likes.map(&:comment)
+  end
+
+  def show_post_likes
+    render json: @current_user.post_likes.post.map(&:post)
+  end
+
   def create
     user = User.create!(user_params)
     session[:user_id] = user.id

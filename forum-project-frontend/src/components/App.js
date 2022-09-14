@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import SignUp from "./SignUp";
 import Login from "./Login";
 import NavBar from "./NavBar";
+import Profile from "./Profile";
 import { Route, Routes } from "react-router-dom";
 import "../index.css";
 
@@ -25,9 +26,9 @@ function App() {
         <Route exact path="/" />
         <Route path="/view-posts" />
         <Route path="/create-post" />
-        <Route path="/login" element= {<Login onLogin={onLogin}/>} />
-        <Route path="/create-account" element= {<SignUp onLogin={onLogin}/>} />
-        <Route path="/user-profile" />
+        <Route path="/login" element={<Login onLogin={onLogin} />} />
+        <Route path="/create-account" element={<SignUp onLogin={onLogin} />} />
+        <Route path="/user-profile" element={<Profile user={user} />} />
       </Routes>
     </div>
   );
