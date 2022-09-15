@@ -4,6 +4,7 @@ import Post from "./Post";
 const PostList = ({ fetchAdminPosts = false, user, categoryName }) => {
   const [posts, setPosts] = useState([]);
   const [filteredPosts, setFilteredPosts] = useState([]);
+  const [isOpen, setIsOpen] = useState(!false);
 
   //Fetches latest posts from prod and sets state on mount
   useEffect(() => {
@@ -28,6 +29,10 @@ const PostList = ({ fetchAdminPosts = false, user, categoryName }) => {
     }
   }, []);
 
+  function toggleSideBarMenu() {
+    setIsOpen(!isOpen);
+  }
+
   useEffect(() => {
     filterPosts();
   }, [categoryName]);
@@ -48,7 +53,7 @@ const PostList = ({ fetchAdminPosts = false, user, categoryName }) => {
             <Post key={post.id} post={post} user_id={user.id} />
           ))}
     </div>
-  );
-};
+  )
+}
 
 export default PostList;

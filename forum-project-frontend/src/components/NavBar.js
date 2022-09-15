@@ -51,7 +51,7 @@ const NavBarTop = ({ user, handleLogout, setCategoryName }) => {
 };
 
 const NavBarSide = ({ user, setCategoryName }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(!false);
   const [categories, setCategories] = useState([]);
 
   function toggleSideBarMenu() {

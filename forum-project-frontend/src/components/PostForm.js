@@ -54,7 +54,7 @@ function PostForm({ user, onSubmit }) {
           onChange={(e) => setBody(e.target.value)}
         />
         <br />
-        <button>Submit</button>
+        <button className='new-post-btn'>Submit</button>
       </form>
     </div>
   );
