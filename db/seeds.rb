@@ -1,79 +1,98 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
+puts "Seeding Data..."
 
-puts 'Seeding Data...'
+def random_user
+  User.all.sample.id
+end
+
+def random_quote
+  random_array = 
+  [
+    Faker::TvShows::BrooklynNineNine.quote, Faker::TvShows::RickAndMorty.quote, Faker::TvShows::AquaTeenHungerForce.quote,
+    Faker::TvShows::SouthPark.quote, Faker::TvShows::Simpsons.quote, Faker::TvShows::SiliconValley.quote,
+    Faker::TvShows::BigBangTheory.quote, Faker::TvShows::BojackHorseman.quote,"Garret didn't think this one would show up"
+  ]
+  random_array.sample
+end
+
+def random_category
+  Category.all.sample.id
+end
+
+def random_post
+  Post.all.sample.id
+end
+
+def random_comment
+  Comment.all.sample.id
+end
+
+puts "Creating users"
+def create_users(name)
+  User.create(email: Faker::Internet.email, username: name + rand(1000).to_s,
+  password: Faker::Internet.password)
+end
+
+puts "Creating categories"
+def create_categories(name)
+  Category.create(name: name)
+end
+
+puts "Creating posts"
+def create_posts
+  Post.create(title: Faker::Book.title, body: random_quote, user_id: random_user,
+  category_id: random_category)
+end
+
+puts "Creating comments"
+def create_comments
+  Comment.create(body: Faker::Quote, user_id: random_user, post_id: random_post)
+end
+
+puts "Creating likes..."
+def create_post_like
+  PostLike.create(user_id: random_user, post_id: random_post)
+end
+
+def create_comment_like
+  CommentLike.create(user_id: random_user, comment_id: random_comment)
+end
+
+puts "Randomizing database values..."
+3.times do |i|
+  create_users(Faker::TvShows::RickAndMorty.character)
+  create_users(Faker::TvShows::TheFreshPrinceOfBelAir.character)
+  create_users(Faker::TvShows::BrooklynNineNine.character)
+  create_users(Faker::TvShows::FamilyGuy.character)
+end
+
+4.times do |i|
+  create_categories(Faker::ProgrammingLanguage.name)
+  create_categories(Faker::Science.element)
+  create_categories(Faker::Nation.nationality)
+  create_categories(Faker::Game.title)
+end
+
+20.times do |i|
+  create_posts()
+end
+
+12.times do |i|
+  create_comments()
+end
+
+40.times do |i|
+  create_post_like()
+end
+
+40.times do |i|
+  create_comment_like()
+end
+
 # Create test admin
-admin = User.create(email: 'admin@localhost', username: 'admin', password: 'password', is_admin: true)
-# Create test users
-u1 = User.create(email: Faker::Internet.email, username: Faker::Beer.brand + rand(1000).to_s,
-                 password: Faker::Internet.password)
-u2 = User.create(email: Faker::Internet.email, username: Faker::Beer.brand + rand(1000).to_s,
-                 password: Faker::Internet.password)
-u3 = User.create(email: Faker::Internet.email, username: Faker::Beer.brand + rand(1000).to_s,
-                 password: Faker::Internet.password)
-u4 = User.create(email: Faker::Internet.email, username: Faker::Beer.brand + rand(1000).to_s,
-                 password: Faker::Internet.password)
-u5 = User.create(email: Faker::Internet.email, username: Faker::Beer.brand + rand(1000).to_s,
-                 password: Faker::Internet.password)
+puts "Creating Admin"
+admin = User.create(email: "admin@localhost", username: "admin", password: "password", is_admin: true)
+# create admin post
+Post.create(title: "Stackoverflat is officially live!", body: "admin", user_id: admin.id, category_id: random_category,
+  admin: true)
 
-# Create test categories
-cat1 = Category.create(name: Faker::Beer.brand)
-cat2 = Category.create(name: Faker::Beer.brand)
-cat3 = Category.create(name: Faker::Beer.brand)
-cat4 = Category.create(name: Faker::Beer.brand)
-cat5 = Category.create(name: Faker::Beer.brand)
-
-# Create test posts
-p1 = Post.create(title: Faker::Lorem.unique.sentence, body: Faker::Lorem.unique.paragraph, user_id: u1.id,
-                 category_id: cat1.id)
-p2 = Post.create(title: Faker::Lorem.unique.sentence, body: Faker::Lorem.unique.paragraph, user_id: u2.id,
-                 category_id: cat2.id)
-p3 = Post.create(title: Faker::Lorem.unique.sentence, body: Faker::Lorem.unique.paragraph, user_id: u3.id,
-                 category_id: cat3.id)
-p4 = Post.create(title: Faker::Lorem.unique.sentence, body: Faker::Lorem.unique.paragraph, user_id: u4.id,
-                 category_id: cat4.id)
-p5 = Post.create(title: Faker::Lorem.unique.sentence, body: Faker::Lorem.unique.paragraph, user_id: u5.id,
-                 category_id: cat5.id)
-# create admin posts
-Post.create(title: Faker::Lorem.unique.sentence, body: 'admin', user_id: admin.id, category_id: cat1.id,
-            admin: true)
-Post.create(title: Faker::Lorem.unique.sentence, body: 'admin', user_id: admin.id, category_id: cat2.id,
-            admin: true)
-Post.create(title: Faker::Lorem.unique.sentence, body: 'admin', user_id: admin.id, category_id: cat3.id,
-            admin: true)
-Post.create(title: Faker::Lorem.unique.sentence, body: 'admin', user_id: admin.id, category_id: cat4.id,
-            admin: true)
-Post.create(title: Faker::Lorem.unique.sentence, body: 'admin', user_id: admin.id, category_id: cat5.id,
-            admin: true)
-# Create test comments
-c1 = Comment.create(body: Faker::Lorem.unique.paragraph, user_id: u1.id, post_id: p1.id)
-c2 = Comment.create(body: Faker::Lorem.unique.paragraph, user_id: u2.id, post_id: p2.id)
-c3 = Comment.create(body: Faker::Lorem.unique.paragraph, user_id: u3.id, post_id: p3.id)
-c4 = Comment.create(body: Faker::Lorem.unique.paragraph, user_id: u4.id, post_id: p4.id)
-c5 = Comment.create(body: Faker::Lorem.unique.paragraph, user_id: u5.id, post_id: p5.id)
-c6 = Comment.create(body: Faker::Lorem.unique.paragraph, user_id: u1.id, post_id: p2.id)
-c7 = Comment.create(body: Faker::Lorem.unique.paragraph, user_id: u2.id, post_id: p3.id)
-c8 = Comment.create(body: Faker::Lorem.unique.paragraph, user_id: u3.id, post_id: p4.id)
-c9 = Comment.create(body: Faker::Lorem.unique.paragraph, user_id: u4.id, post_id: p5.id)
-c10 = Comment.create(body: Faker::Lorem.unique.paragraph, user_id: u5.id, post_id: p1.id)
-
-# Create test post likes
-pl1 = PostLike.create(user_id: u1.id, post_id: p1.id)
-pl2 = PostLike.create(user_id: u2.id, post_id: p2.id)
-pl3 = PostLike.create(user_id: u3.id, post_id: p3.id)
-pl4 = PostLike.create(user_id: u3.id, post_id: p3.id)
-pl5 = PostLike.create(user_id: u3.id, post_id: p3.id)
-
-# Create test comment likes
-cl1 = CommentLike.create(user_id: u1.id, comment_id: c1.id)
-cl2 = CommentLike.create(user_id: u2.id, comment_id: c2.id)
-cl3 = CommentLike.create(user_id: u3.id, comment_id: c3.id)
-cl4 = CommentLike.create(user_id: u3.id, comment_id: c3.id)
-cl5 = CommentLike.create(user_id: u3.id, comment_id: c3.id)
-
-puts 'Done!'
+puts "Done!"

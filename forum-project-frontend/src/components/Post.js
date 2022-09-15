@@ -4,14 +4,15 @@ const Post = ({ post, user_id }) => {
   const { title, body, user, category } = post;
   const [liked, setLiked] = useState(false);
   const [openComments, setOpenComments] = useState(false);
+  
   const likePost = () => {
     fetch(`/post_likes`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ user_id: user_id, post_id: post.id }),
+      body: JSON.stringify({ total_likes: total_likes, user_id: user_id, post_id: post.id }),
     })
       .then((r) => r.json())
-      .then(setLiked(true));
+      .then(setLiked(total_likes));
   };
 
   const handleToggleComments = () => {
