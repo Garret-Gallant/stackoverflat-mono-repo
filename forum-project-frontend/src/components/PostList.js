@@ -27,26 +27,26 @@ const PostList = ({ fetchAdminPosts = false, user, categoryName }) => {
       });
     }
   }, []);
-  
 
   useEffect(() => {
     filterPosts();
   }, [categoryName]);
 
   const filterPosts = () => {
-      setFilteredPosts(posts.filter((post) => post.category.name === categoryName));
+    setFilteredPosts(
+      posts.filter((post) => post.category.name === categoryName)
+    );
   };
 
   return (
     <div>
-      <h2 className="w-fit m-auto">Posts</h2>
-      {categoryName ? 
-      filteredPosts.map((post) => (
-        <Post key={post.id} post={post} user_id={user.id} /> ))
-        : 
-      posts.map((post) => (
-        <Post key={post.id} post={post} user_id={user.id} />
-      ))}
+      {categoryName
+        ? filteredPosts.map((post) => (
+            <Post key={post.id} post={post} user_id={user.id} />
+          ))
+        : posts.map((post) => (
+            <Post key={post.id} post={post} user_id={user.id} />
+          ))}
     </div>
   );
 };

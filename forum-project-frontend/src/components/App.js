@@ -15,7 +15,7 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [categoryName, setCategoryName] = useState("");
 
-  console.log(categoryName)
+  console.log(categoryName);
   const navigate = useNavigate();
 
   //Sets state and makes cookie session r.ok is true if backend doesnt throw http error
@@ -49,16 +49,21 @@ function App() {
   }, [loggedIn]);
 
   return (
-    <div>
-      {loggedIn ? <NavBar user={user} handleLogout={handleLogout} setCategoryName={setCategoryName} /> : null}
+    <div className="app">
+      {loggedIn ? (
+        <NavBar
+          user={user}
+          handleLogout={handleLogout}
+          setCategoryName={setCategoryName}
+        />
+      ) : null}
       <Routes>
         <Route exact path="/" element={<Landing onLogin={onLogin} />} />
+        <Route exact path="/home" element={<Home user={user} />} />
         <Route
-          exact
-          path="/home"
-          element={<Home user={user} />}
+          path="/view-posts"
+          element={<PostList user={user} categoryName={categoryName} />}
         />
-        <Route path="/view-posts" element={<PostList user={user} categoryName={categoryName}/>} />
         <Route
           path="/create-post"
           element={<PostForm user={user} onSubmit={goToHomePage} />}

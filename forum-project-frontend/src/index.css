@@ -3,24 +3,37 @@
 @tailwind utilities;
 
 @layer components {
+  body {
+    @apply bg-black;
+  }
   input {
-    @apply align-super border-black border-2 rounded-full ml-1 flex flex-col 
+    @apply text-black align-super border-cyan border-2 rounded-full ml-1 flex flex-col 
     items-center justify-center mt-2;
   }
-  .sign-button{
-    @apply hover:bg-blue-700 text-black font-bold my-4 py-1 px-4 border border-blue-700 rounded-full ml-2 mb-6
+  .top-nav-bar {
+    @apply text-white;
+  }
+  .sign-button {
+    @apply hover:bg-[blue] text-white font-bold my-4 py-1 px-4 border border-cyan rounded-full ml-2 mb-6;
   }
   .nav-button {
-    @apply hover:bg-blue-700 text-black font-bold my-4 py-1 px-4 border border-blue-700 rounded-full ml-2 mb-6
+    @apply hover:bg-[blue] bg-black border-white text-white font-bold my-4 py-1 px-4 border border-cyan rounded-full ml-2 mb-6;
   }
+  .post-card {
+    @apply h-64 max-w-xl text-black border-orange bg-white ml-auto mr-auto flex flex-col items-center border border-black my-4;
+  }
+
   .cat-button {
-    @apply hover:bg-blue-700 text-black font-bold py-1 px-4 border border-blue-700 rounded-full ml-2 mt-6 mb-6 flex flex-col 
-    items-center justify-center mt-2
+    @apply hover:bg-[blue] border-white bg-black text-white font-bold py-1 px-4 border border-cyan rounded-full ml-2  mb-6 flex flex-col 
+    items-center justify-center mt-2;
   }
   .user-form {
     @apply flex flex-col ml-auto mr-auto border-2 w-fit pl-4 pr-4 mb-6;
   }
   .profileCardSelect span {
-    @apply text-black font-bold py-1 px-4 ml-2 mt-6 mb-6 hover:cursor-pointer;
+    @apply text-white font-bold py-1 px-4 ml-2 mt-6 mb-6 hover:cursor-pointer;
+  }
+  .profile {
+    @apply text-white;
   }
 }

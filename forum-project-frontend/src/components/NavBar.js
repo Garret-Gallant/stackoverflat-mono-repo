@@ -5,28 +5,36 @@ import { NavLink } from "react-router-dom";
 function NavBar({ user, handleLogout, setCategoryName }) {
   return (
     <div>
-      <img
-        class="object-cover h-96 object-center"
-        src="https://user-images.githubusercontent.com/81394542/190235133-396cb4ab-c85b-4190-a847-44153bf6cca4.png"
-        alt="Stackoverflat Logo"
-      />
-      <div className="flex">
-        <NavBarSide user={user} setCategoryName={setCategoryName} />
-        <NavBarTop user={user} handleLogout={handleLogout} />
+      <div>
+        <img
+          class="object-cover h-96 object-center w-full"
+          src="https://user-images.githubusercontent.com/81394542/190235133-396cb4ab-c85b-4190-a847-44153bf6cca4.png"
+          alt="Stackoverflat Logo"
+        />
       </div>
+      <NavBarSide user={user} setCategoryName={setCategoryName} />
+      <NavBarTop
+        user={user}
+        handleLogout={handleLogout}
+        setCategoryName={setCategoryName}
+      />
     </div>
   );
 }
 
-const NavBarTop = ({ user, handleLogout }) => {
+const NavBarTop = ({ user, handleLogout, setCategoryName }) => {
   return (
-    <div className="topNavBar w-fit ml-auto">
+    <div className="top-nav-bar w-fit h-fit absolute right-0 top-96">
       <h2>User: {!!Object.keys(user).length ? user.username : "Anonymous"}</h2>
       <NavLink className="nav-button" to="/home">
         <span>Home </span>
       </NavLink>
 
-      <NavLink className="nav-button" to="/view-posts">
+      <NavLink
+        className="nav-button"
+        to="/view-posts"
+        onClick={() => setCategoryName("")}
+      >
         <span>View Posts </span>
       </NavLink>
       <NavLink className="nav-button" to="/create-post">
@@ -57,17 +65,20 @@ const NavBarSide = ({ user, setCategoryName }) => {
   }, []);
 
   return isOpen ? (
-    <button className="cat-button" onClick={toggleSideBarMenu}>
+    <button className="cat-button w-fit" onClick={toggleSideBarMenu}>
       View Specific Category
     </button>
   ) : (
-    <div>
-      <button className="cat-button" onClick={toggleSideBarMenu}>
+    <div className="w-fit">
+      <button className="cat-button w-fit" onClick={toggleSideBarMenu}>
         Close Menu
       </button>
-      <div>
+      <div className="buttons absolute">
         {categories.map((category) => (
-          <button onClick={(() => setCategoryName(category.name))} className="cat-button">
+          <button
+            onClick={() => setCategoryName(category.name)}
+            className="cat-button"
+          >
             {category.name}
           </button>
         ))}

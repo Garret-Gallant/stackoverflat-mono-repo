@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-
+import Post from "./Post";
 //I was just getting the data from the backend, but I'm not sure how to display it
 //I put all the components in one file bc laziness feel free to fix
 const Profile = ({ user }) => {
@@ -24,13 +24,13 @@ const Profile = ({ user }) => {
         setComponent(<UserInfo user={user} />);
         break;
       case "submitted":
-        setComponent(<SubmittedPosts />);
+        setComponent(<SubmittedPosts user={user} />);
         break;
       case "comments":
         setComponent(<SubmittedComments />);
         break;
       case "liked":
-        setComponent(<LikedPosts />);
+        setComponent(<LikedPosts user={user} />);
         break;
       case "liked_comments":
         setComponent(<LikedComments />);
@@ -78,7 +78,7 @@ const UserInfo = ({ user }) => {
   );
 };
 
-const SubmittedPosts = () => {
+const SubmittedPosts = ({ user }) => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
@@ -89,15 +89,7 @@ const SubmittedPosts = () => {
 
   if (posts.length > 0) {
     return posts.map((post) => {
-      return (
-        <ul key={post.id}>
-          <li className="font-bold">-{post.category.name}-</li>
-          <li>{post.title}</li>
-          <li>{post.body}</li>
-          <li>submitted: {post.user.username}</li>
-          <li className="hover:cursor-pointer">view comments</li>
-        </ul>
-      );
+      return <Post key={post.id} post={post} user_id={user.id} />;
     });
   }
 };
@@ -118,7 +110,7 @@ const SubmittedComments = () => {
   );
 };
 
-const LikedPosts = () => {
+const LikedPosts = ({ user }) => {
   const [likes, setLikes] = useState([]);
   useEffect(() => {
     fetch("/me/post_likes")
@@ -126,7 +118,11 @@ const LikedPosts = () => {
       .then((data) => setLikes(data));
   }, []);
 
-  return likes.length > 0 ? <div>{likes}</div> : <div>Nothing to display</div>;
+  return likes.length > 0 ? (
+    likes.map((post) => <Post key={post.id} post={post} user_id={user.id} />)
+  ) : (
+    <div>Nothing to display</div>
+  );
 };
 
 const LikedComments = () => {

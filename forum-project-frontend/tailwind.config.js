@@ -9,6 +9,15 @@ module.exports = {
       xl: "1280px",
       "2xl": "1536px",
     },
+    colors: {
+      "light-blue": "#5ca5r6",
+      "black-blue": "#101820",
+      orange: "#e45b44",
+      "dark-blue": "#1b2630",
+      black: "#030416",
+      cyan: "00EFE1",
+      white: "#FFFFFF",
+    },
     extend: {
       spacing: {
         128: "32rem",
