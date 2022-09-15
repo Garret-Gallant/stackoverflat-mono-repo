@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 
 // Having them split up makes sense to me here. Combine them if you prefer.
-function NavBar({ user, handleLogout }) {
+function NavBar({ user, handleLogout, setCategoryName }) {
   return (
     <div>
       <img
@@ -11,7 +11,7 @@ function NavBar({ user, handleLogout }) {
         alt="Stackoverflat Logo"
       />
       <div className="flex">
-        <NavBarSide user={user} />
+        <NavBarSide user={user} setCategoryName={setCategoryName} />
         <NavBarTop user={user} handleLogout={handleLogout} />
       </div>
     </div>
@@ -42,10 +42,9 @@ const NavBarTop = ({ user, handleLogout }) => {
   );
 };
 
-const NavBarSide = ({ user }) => {
+const NavBarSide = ({ user, setCategoryName }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [categories, setCategories] = useState([]);
-  const [categoryName, setCategoryName] = useState("");
 
   function toggleSideBarMenu() {
     setIsOpen(!isOpen);
@@ -68,11 +67,9 @@ const NavBarSide = ({ user }) => {
       </button>
       <div>
         {categories.map((category) => (
-          <NavLink
-            className="cat-button"
-          >
+          <button onClick={(() => setCategoryName(category.name))} className="cat-button">
             {category.name}
-          </NavLink>
+          </button>
         ))}
       </div>
     </div>

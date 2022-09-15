@@ -14,7 +14,9 @@ function App() {
   const [user, setUser] = useState({});
   const [loggedIn, setLoggedIn] = useState(false);
   const [posts, setPosts] = useState([]);
+  const [categoryName, setCategoryName] = useState("");
 
+  console.log(categoryName)
   const navigate = useNavigate();
 
   //Sets state and makes cookie session r.ok is true if backend doesnt throw http error
@@ -44,8 +46,15 @@ function App() {
     let pageinated = param ? `?page=${param}` : "";
     fetch("/posts")
       .then((r) => r.json())
-      .then((data) => setPosts(data));
+      .then((data) => setPosts(data))
+      .then(filterPosts)
   };
+
+  const filterPosts = () => {
+    if (categoryName != "") {
+      setPosts((posts) => posts = posts.filter(post => post.category.name === categoryName))
+    }
+  }
 
   const goToHomePage = () => navigate("/home");
   const goToLangingPage = () => navigate("/");
@@ -57,7 +66,7 @@ function App() {
 
   return (
     <div>
-      {loggedIn ? <NavBar user={user} handleLogout={handleLogout} /> : null}
+      {loggedIn ? <NavBar user={user} handleLogout={handleLogout} setCategoryName={setCategoryName} /> : null}
       <Routes>
         <Route exact path="/" element={<Landing onLogin={onLogin} />} />
         <Route
