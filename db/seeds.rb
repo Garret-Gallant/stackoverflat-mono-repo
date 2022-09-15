@@ -45,7 +45,7 @@ end
 
 puts "Creating comments"
 def create_comments
-  Comment.create(body: Faker::Quote, user_id: random_user, post_id: random_post)
+  Comment.create(body: random_quote, user_id: random_user, post_id: random_post)
 end
 
 puts "Creating likes..."
@@ -59,10 +59,10 @@ end
 
 puts "Randomizing database values..."
 3.times do |i|
-  create_users(Faker::TvShows::RickAndMorty.character)
-  create_users(Faker::TvShows::TheFreshPrinceOfBelAir.character)
-  create_users(Faker::TvShows::BrooklynNineNine.character)
-  create_users(Faker::TvShows::FamilyGuy.character)
+  create_users(Faker::TvShows::RickAndMorty.character.gsub(/\s+/, ""))
+  create_users(Faker::TvShows::TheFreshPrinceOfBelAir.character.gsub(/\s+/, ""))
+  create_users(Faker::TvShows::BrooklynNineNine.character.gsub(/\s+/, ""))
+  create_users(Faker::TvShows::FamilyGuy.character.gsub(/\s+/, ""))
 end
 
 4.times do |i|
