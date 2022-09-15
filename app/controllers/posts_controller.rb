@@ -21,6 +21,10 @@ class PostsController < ApplicationController
     end
   end
 
+  def show_comments
+    render json: Post.find(params[:id]).comments
+  end
+
   def admin_posts
     posts = Post.where(admin: true)
     if posts.empty?

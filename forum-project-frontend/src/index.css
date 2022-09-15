@@ -20,7 +20,8 @@
     @apply hover:bg-[blue] bg-black border-white text-white font-bold my-4 py-1 px-4 border border-cyan rounded-full ml-2 mb-6;
   }
   .new-post-btn {
-    @apply hover:bg-[black] text-white font-bold my-4 py-1 px-4 border border-white rounded-full ml-2 mb-6;
+    hover: bg-[black] text-white font-bold my-4 py-1 px-4 border border-cyan
+      rounded-full ml-2 mb-6;
   }
   .post-card {
     @apply h-fit max-w-xl text-black border-orange bg-white ml-auto mr-auto flex flex-col items-center border border-black my-4;
@@ -40,6 +41,9 @@
     @apply text-white;
   }
   .profile-details {
-    @apply mt-8
+    @apply mt-8;
+  }
+  .comment-list {
+    @apply border bg-white max-w-xl m-auto;
   }
 }
