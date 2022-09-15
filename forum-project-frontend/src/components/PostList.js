@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Post from "./Post";
 
-const PostList = ({ fetchAdminPosts = false }) => {
+const PostList = ({ fetchAdminPosts = false, user }) => {
   const [posts, setPosts] = useState([]);
 
   //Fetches latest posts from prod and sets state on mount
@@ -25,7 +25,7 @@ const PostList = ({ fetchAdminPosts = false }) => {
     <div>
       <h2 className="w-fit m-auto">Posts</h2>
       {posts.map((post) => (
-        <Post key={post.id} post={post} />
+        <Post key={post.id} post={post} user_id={user.id} />
       ))}
     </div>
   );

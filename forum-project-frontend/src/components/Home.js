@@ -1,6 +1,6 @@
 import React from "react";
 import PostList from "./PostList";
-const Home = () => {
+const Home = ({ user }) => {
   return (
     <div>
       <img
@@ -8,7 +8,7 @@ const Home = () => {
         src="https://user-images.githubusercontent.com/81394542/190235133-396cb4ab-c85b-4190-a847-44153bf6cca4.png"
         alt="Stackoverflat Logo"
       />
-      <PostList fetchAdminPosts={true} />
+      <PostList fetchAdminPosts={true} user={user} />
     </div>
   );
 };
