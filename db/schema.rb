@@ -61,14 +61,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_15_014642) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "email", null: false
-    t.string "username", null: false
-    t.string "password_digest", null: false
+    t.string "username"
+    t.string "password"
+    t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "is_admin", default: false
+    t.boolean "is_admin"
     t.datetime "confirmed_at"
-    t.index ["email"], name: "index_users_on_email", unique: true
+    t.string "password_digest"
   end
 
   add_foreign_key "comment_likes", "comments"

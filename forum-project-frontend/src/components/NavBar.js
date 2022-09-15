@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { NavLink } from "react-router-dom";
 
 // Having them split up makes sense to me here. Combine them if you prefer.
@@ -34,9 +34,17 @@ const NavBarTop = ({ user, handleLogout }) => {
 };
 
 const NavBarSide = ({ user }) => {
+  
+  const [isOpen, setIsOpen] = useState(false);
+  
+  function toggleSideBarMenu(){
+    setIsOpen(!isOpen)
+  }
+
   return (
+    isOpen ? <button onClick={toggleSideBarMenu}>Open Nav</button> :
     <div className="sideNavBar w-24 mr-auto">
-      <h2 className="font-bold">Side Nav Bar</h2>
+      <button onClick={toggleSideBarMenu}>Close Nav</button>
       <div className="">
         <NavLink className="nav-button" to="/home">
           <span>Home </span>
