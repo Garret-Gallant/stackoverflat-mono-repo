@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get '/me/comment_likes', to: 'users#show_comment_likes'
   get '/me/post_likes', to: 'users#show_post_likes'
   get '/admin_posts', to: 'posts#admin_posts'
+  get '/post/comments/:id', to: 'posts#show_comments'
   post '/post_likes', to: 'post_likes#create'
   post '/signup', to: 'users#create'
   post '/post', to: 'posts#create'
