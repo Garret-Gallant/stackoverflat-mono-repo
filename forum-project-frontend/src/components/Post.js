@@ -4,6 +4,7 @@ const Post = ({ post, user_id }) => {
   const { title, body, user, category } = post;
   const [liked, setLiked] = useState(false);
   const [openComments, setOpenComments] = useState(false);
+  
   const likePost = () => {
     fetch(`/post_likes`, {
       method: "POST",
