@@ -1,12 +1,19 @@
-import React, {useState} from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 
 // Having them split up makes sense to me here. Combine them if you prefer.
 function NavBar({ user, handleLogout }) {
   return (
-    <div className="flex">
-      <NavBarSide user={user} />
-      <NavBarTop user={user} handleLogout={handleLogout} />
+    <div>
+      <img
+        class="object-cover h-96 object-center"
+        src="https://user-images.githubusercontent.com/81394542/190235133-396cb4ab-c85b-4190-a847-44153bf6cca4.png"
+        alt="Stackoverflat Logo"
+      />
+      <div className="flex">
+        <NavBarSide user={user} />
+        <NavBarTop user={user} handleLogout={handleLogout} />
+      </div>
     </div>
   );
 }
@@ -28,40 +35,45 @@ const NavBarTop = ({ user, handleLogout }) => {
       <NavLink className="nav-button" to="/user-profile">
         <span>Profile </span>
       </NavLink>
-      <button onClick={handleLogout}>Logout</button>
+      <button className="nav-button" onClick={handleLogout}>
+        Logout
+      </button>
     </div>
   );
 };
 
-const NavBarSide = ({ user, categories }) => {
-  
+const NavBarSide = ({ user }) => {
   const [isOpen, setIsOpen] = useState(false);
-  
-  function toggleSideBarMenu(){
-    setIsOpen(!isOpen)
+  const [categories, setCategories] = useState([]);
+  const [categoryName, setCategoryName] = useState("");
+
+  function toggleSideBarMenu() {
+    setIsOpen(!isOpen);
   }
 
-  return (
-    isOpen ? <button className="cat-button" onClick={toggleSideBarMenu}>View Specific Category</button> :
+  useEffect(() => {
+    fetch("/categories")
+      .then((r) => r.json())
+      .then((categoryData) => setCategories(categoryData));
+  }, []);
+
+  return isOpen ? (
+    <button className="cat-button" onClick={toggleSideBarMenu}>
+      View Specific Category
+    </button>
+  ) : (
     <div>
-      <button className="cat-button" onClick={toggleSideBarMenu}>Close Menu</button>
+      <button className="cat-button" onClick={toggleSideBarMenu}>
+        Close Menu
+      </button>
       <div>
-        <NavLink className="nav-button" to="/home">
-          <span>category 1</span>
-          <br />
-        </NavLink>
-        <NavLink className="nav-button" to="/view-posts">
-          <span>Category 2</span>
-          <br />
-        </NavLink>
-        <NavLink className="nav-button" to="/create-post">
-          <span>Category 3</span>
-          <br />
-        </NavLink>
-        <NavLink className="nav-button" to="/user-profile">
-          <span>Category 4</span>
-          <br />
-        </NavLink>
+        {categories.map((category) => (
+          <NavLink
+            className="cat-button"
+          >
+            {category.name}
+          </NavLink>
+        ))}
       </div>
     </div>
   );
