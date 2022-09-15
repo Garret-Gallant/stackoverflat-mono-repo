@@ -2,21 +2,27 @@ import React from "react";
 import CommentForm from "./CommentForm";
 import { useState, useEffect } from "react";
 
-const CommentList = ({ postId }) => {
+const CommentList = ({ userId, postId }) => {
   const [comments, setComments] = useState([]);
 
-  useEffect(() => {
+  const fetchNewComments = () => {
     fetch(`post/comments/${postId}`)
       .then((r) => r.json())
-      .then((data) => setComments(data))
-      .then(console.log(comments));
+      .then((data) => setComments(data));
+  };
+  useEffect(() => {
+    fetchNewComments();
   }, []);
 
   if (comments.length === 0) {
     return (
       <div className="comment-list">
         <div>No comments yet.</div>
-        <CommentForm postId={postId} />
+        <CommentForm
+          postId={postId}
+          userId={userId}
+          refresh={fetchNewComments}
+        />
       </div>
     );
   }
@@ -33,7 +39,11 @@ const CommentList = ({ postId }) => {
         })}
       </div>
       <div className="comment-list">
-        <CommentForm postId={postId} />
+        <CommentForm
+          postId={postId}
+          userId={userId}
+          refresh={fetchNewComments}
+        />
       </div>
     </div>
   );

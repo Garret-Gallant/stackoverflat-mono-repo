@@ -4,7 +4,7 @@ const Post = ({ post, user_id }) => {
   const { title, body, user, category } = post;
   const [liked, setLiked] = useState(false);
   const [openComments, setOpenComments] = useState(false);
-  
+
   const likePost = () => {
     fetch(`/post_likes`, {
       method: "POST",
@@ -35,7 +35,7 @@ const Post = ({ post, user_id }) => {
           like
         </button>
       </div>
-      {openComments ? <CommentList postId={post.id} /> : null}
+      {openComments ? <CommentList userId={user_id} postId={post.id} /> : null}
     </>
   );
 };

@@ -44,6 +44,6 @@
     @apply mt-8;
   }
   .comment-list {
-    @apply border bg-white max-w-xl m-auto;
+    @apply border bg-white max-w-xl m-auto min-h-[50px];
   }
 }
