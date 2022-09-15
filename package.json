@@ -9,5 +9,8 @@
     "build": "npm install --prefix forum-project-frontend && npm run build --prefix client",
     "deploy": "co -a client/build/. public/",
     "heroku-postbuild": "npm run clean && npm run build && npm run deploy"
+  },
+  "dependencies": {
+    "@tailwindcss/line-clamp": "^0.4.2"
   }
 }

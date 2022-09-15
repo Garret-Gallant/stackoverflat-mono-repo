@@ -9,3 +9,7 @@ desc 'start postgresql server'
 task :start_psql do
   sh 'sudo service postgresql start'
 end
+desc 'stop postgresql server'
+task :stop_psql do
+  sh 'sudo service postgresql stop'
+end

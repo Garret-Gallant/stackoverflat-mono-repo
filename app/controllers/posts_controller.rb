@@ -21,6 +21,15 @@ class PostsController < ApplicationController
     end
   end
 
+  def admin_posts
+    posts = Post.where(admin: true)
+    if posts.empty?
+      render json: :no_content
+    else
+      render json: posts
+    end
+  end
+
   private
 
   def post_params

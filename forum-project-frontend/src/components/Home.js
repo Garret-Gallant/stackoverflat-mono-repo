@@ -1,5 +1,5 @@
 import React from "react";
-
+import PostList from "./PostList";
 const Home = () => {
   return (
     <div>
@@ -8,7 +8,7 @@ const Home = () => {
         src="https://user-images.githubusercontent.com/81394542/190235133-396cb4ab-c85b-4190-a847-44153bf6cca4.png"
         alt="Stackoverflat Logo"
       />
-      {/* <h2 className="w-fit m-auto">Home page</h2> */}
+      <PostList fetchAdminPosts={true} />
     </div>
   );
 };

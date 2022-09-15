@@ -7,7 +7,8 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 puts 'Seeding Data...'
-
+# Create test admin
+admin = User.create(email: 'admin@localhost', username: 'admin', password: 'password', is_admin: true)
 # Create test users
 u1 = User.create(email: Faker::Internet.email, username: Faker::Beer.brand + rand(1000).to_s,
                  password: Faker::Internet.password)
@@ -38,7 +39,17 @@ p4 = Post.create(title: Faker::Lorem.unique.sentence, body: Faker::Lorem.unique.
                  category_id: cat4.id)
 p5 = Post.create(title: Faker::Lorem.unique.sentence, body: Faker::Lorem.unique.paragraph, user_id: u5.id,
                  category_id: cat5.id)
-
+# create admin posts
+Post.create(title: Faker::Lorem.unique.sentence, body: 'admin', user_id: admin.id, category_id: cat1.id,
+            admin: true)
+Post.create(title: Faker::Lorem.unique.sentence, body: 'admin', user_id: admin.id, category_id: cat2.id,
+            admin: true)
+Post.create(title: Faker::Lorem.unique.sentence, body: 'admin', user_id: admin.id, category_id: cat3.id,
+            admin: true)
+Post.create(title: Faker::Lorem.unique.sentence, body: 'admin', user_id: admin.id, category_id: cat4.id,
+            admin: true)
+Post.create(title: Faker::Lorem.unique.sentence, body: 'admin', user_id: admin.id, category_id: cat5.id,
+            admin: true)
 # Create test comments
 c1 = Comment.create(body: Faker::Lorem.unique.paragraph, user_id: u1.id, post_id: p1.id)
 c2 = Comment.create(body: Faker::Lorem.unique.paragraph, user_id: u2.id, post_id: p2.id)
