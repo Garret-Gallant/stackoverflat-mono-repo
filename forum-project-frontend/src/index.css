@@ -20,7 +20,7 @@
     @apply hover:bg-[blue] bg-black border-white text-white font-bold my-4 py-1 px-4 border border-cyan rounded-full ml-2 mb-6;
   }
   .new-post-btn {
-    hover: bg-[black] text-white font-bold my-4 py-1 px-4 border border-cyan
+    @apply hover:bg-[blue] text-white font-bold my-4 py-1 px-4 border border-cyan
       rounded-full ml-2 mb-6;
   }
   .post-card {

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 function Login({ onLogin }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [hasError, setError] = useState(false);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -14,7 +15,7 @@ function Login({ onLogin }) {
       body: JSON.stringify({ email, password }),
     })
       .then((r) => r.json())
-      .then((user) => onLogin(user));
+      .then((user) => onLogin(user))
   }
 
   return (
