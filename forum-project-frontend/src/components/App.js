@@ -13,7 +13,6 @@ import "../index.css";
 function App() {
   const [user, setUser] = useState({});
   const [loggedIn, setLoggedIn] = useState(false);
-  const [posts, setPosts] = useState([]);
   const [categoryName, setCategoryName] = useState("");
 
   console.log(categoryName)
@@ -41,21 +40,6 @@ function App() {
     });
   };
 
-  //Fetches posts from production database
-  const fetchPosts = (param = "") => {
-    let pageinated = param ? `?page=${param}` : "";
-    fetch("/posts")
-      .then((r) => r.json())
-      .then((data) => setPosts(data))
-      .then(filterPosts)
-  };
-
-  const filterPosts = () => {
-    if (categoryName != "") {
-      setPosts((posts) => posts = posts.filter(post => post.category.name === categoryName))
-    }
-  }
-
   const goToHomePage = () => navigate("/home");
   const goToLangingPage = () => navigate("/");
 
@@ -72,9 +56,9 @@ function App() {
         <Route
           exact
           path="/home"
-          element={<Home posts={posts} user={user} />}
+          element={<Home user={user} />}
         />
-        <Route path="/view-posts" element={<PostList user={user} />} />
+        <Route path="/view-posts" element={<PostList user={user} categoryName={categoryName}/>} />
         <Route
           path="/create-post"
           element={<PostForm user={user} onSubmit={goToHomePage} />}
