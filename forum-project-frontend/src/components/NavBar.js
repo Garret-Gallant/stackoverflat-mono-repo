@@ -33,7 +33,7 @@ const NavBarTop = ({ user, handleLogout }) => {
   );
 };
 
-const NavBarSide = ({ user }) => {
+const NavBarSide = ({ user, categories }) => {
   
   const [isOpen, setIsOpen] = useState(false);
   
@@ -42,24 +42,24 @@ const NavBarSide = ({ user }) => {
   }
 
   return (
-    isOpen ? <button onClick={toggleSideBarMenu}>Open Nav</button> :
-    <div className="sideNavBar w-24 mr-auto">
-      <button onClick={toggleSideBarMenu}>Close Nav</button>
-      <div className="">
+    isOpen ? <button className="cat-button" onClick={toggleSideBarMenu}>View Specific Category</button> :
+    <div>
+      <button className="cat-button" onClick={toggleSideBarMenu}>Close Menu</button>
+      <div>
         <NavLink className="nav-button" to="/home">
-          <span>Home </span>
+          <span>category 1</span>
           <br />
         </NavLink>
         <NavLink className="nav-button" to="/view-posts">
-          <span>View Posts </span>
+          <span>Category 2</span>
           <br />
         </NavLink>
         <NavLink className="nav-button" to="/create-post">
-          <span>Make A Post </span>
+          <span>Category 3</span>
           <br />
         </NavLink>
         <NavLink className="nav-button" to="/user-profile">
-          <span>Profile </span>
+          <span>Category 4</span>
           <br />
         </NavLink>
       </div>

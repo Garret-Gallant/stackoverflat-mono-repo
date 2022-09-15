@@ -60,7 +60,7 @@ function SignUp({ onLogin }) {
           onChange={(e) => setPasswordConfirmation(e.target.value)}
         />
         <br />
-        <button type="submit">Submit</button>
+        <button className="sign-button" type="submit">Submit</button>
       </form>
     </div>
   );

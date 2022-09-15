@@ -33,7 +33,7 @@ function Login({ onLogin }) {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button type="submit">
+        <button className="sign-button" type="submit">
           <Link to="/home" />
           Login
           <Link />

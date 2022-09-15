@@ -14,6 +14,7 @@ function App() {
   const [user, setUser] = useState({});
   const [loggedIn, setLoggedIn] = useState(false);
   const [posts, setPosts] = useState([]);
+  const [categories, setCategories] = useState([]);
 
   const navigate = useNavigate();
 
@@ -47,6 +48,15 @@ function App() {
       .then((data) => setPosts(data));
   };
 
+  //Fetches categories from production database
+  useEffect(function categories(){
+    fetch("/categories")
+    .then((r) => r.json())
+    .then((categoryData) => setCategories(categoryData))
+  }, [])
+
+  console.log(categories)
+
   const goToHomePage = () => navigate("/home");
   const goToLangingPage = () => navigate("/");
 
@@ -57,7 +67,7 @@ function App() {
 
   return (
     <div>
-      {loggedIn ? <NavBar user={user} handleLogout={handleLogout} /> : null}
+      {loggedIn ? <NavBar user={user} handleLogout={handleLogout} categories={categories} /> : null}
       <Routes>
         <Route exact path="/" element={<Landing onLogin={onLogin} />} />
         <Route
