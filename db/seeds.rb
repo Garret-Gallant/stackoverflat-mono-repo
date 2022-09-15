@@ -90,9 +90,10 @@ end
 
 # Create test admin
 puts "Creating Admin"
+create_categories(admin)
 admin = User.create(email: "admin@localhost", username: "admin", password: "password", is_admin: true)
 # create admin post
-Post.create(title: "Stackoverflat is officially live!", body: "admin", user_id: admin.id, category_id: random_category,
+Post.create(title: "Stackoverflat is officially live!", body: "admin", user_id: admin.id, category_id: admin.id,
   admin: true)
 
 puts "Done!"
