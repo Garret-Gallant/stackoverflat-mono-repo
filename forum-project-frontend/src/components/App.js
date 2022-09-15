@@ -63,9 +63,9 @@ function App() {
         <Route
           exact
           path="/home"
-          element={<Home posts={posts} fetchPosts={fetchPosts} />}
+          element={<Home posts={posts} user={user} />}
         />
-        <Route path="/view-posts" element={<PostList />} />
+        <Route path="/view-posts" element={<PostList user={user} />} />
         <Route
           path="/create-post"
           element={<PostForm user={user} onSubmit={goToHomePage} />}
