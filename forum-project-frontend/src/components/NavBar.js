@@ -43,6 +43,7 @@ const NavBarTop = ({ user, handleLogout, setCategoryName }) => {
       <NavLink className="nav-button" to="/user-profile">
         <span>Profile </span>
       </NavLink>
+      <NavLink className="nav-button" to="/about">About Us</NavLink>
       <button className="nav-button" onClick={handleLogout}>
         Logout
       </button>

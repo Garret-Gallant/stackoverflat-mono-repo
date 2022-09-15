@@ -7,6 +7,7 @@ import Home from "./Home";
 import Landing from "./Landing";
 import PostList from "./PostList";
 import PostForm from "./PostForm";
+import AboutUs from "./AboutUs";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import "../index.css";
 
@@ -71,6 +72,7 @@ function App() {
         <Route path="/login" element={<Login onLogin={onLogin} />} />
         <Route path="/create-account" element={<SignUp onLogin={onLogin} />} />
         <Route path="/user-profile" element={<Profile user={user} />} />
+        <Route path="/about" element={<AboutUs/>}/>
       </Routes>
     </div>
   );
