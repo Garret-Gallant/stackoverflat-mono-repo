@@ -7,7 +7,7 @@
     @apply bg-black;
   }
   input {
-    @apply text-black align-super border-cyan border-2 rounded-full ml-1 flex flex-col 
+    @apply text-black align-super border-cyan border-2 rounded-md ml-1 flex flex-col 
     items-center justify-center mt-2;
   }
   .top-nav-bar {

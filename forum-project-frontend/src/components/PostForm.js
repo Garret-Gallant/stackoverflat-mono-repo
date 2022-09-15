@@ -34,7 +34,7 @@ function PostForm({ user, onSubmit }) {
     <div className="w-fit m-auto">
       <h2 className="text-center">New post</h2>
       <form className="space-y-2" onSubmit={handleSubmit}>
-        <select onChange={(e) => setCategoryId(e.target.value)}>
+        <select class="w-48 overflow-auto rounded-md" onChange={(e) => setCategoryId(e.target.value)}>
           {categories.map((category) => (
             <option key={category.id} value={category.id}>
               {category.name}
@@ -42,13 +42,14 @@ function PostForm({ user, onSubmit }) {
           ))}
         </select>
         <input
+        className="indent-1 "
           type="text"
           value={title}
           placeholder="Title"
           onChange={(e) => setTitle(e.target.value)}
         />
         <textarea
-          className="border-2 border-black"
+          className="box-content h-32 w-56 border-2 border-black indent-0.5 rounded"
           value={body}
           placeholder="Body"
           onChange={(e) => setBody(e.target.value)}
