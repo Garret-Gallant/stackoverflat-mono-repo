@@ -11,10 +11,10 @@ const Post = ({ post, user_id }) => {
     fetch(`/post_likes`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ user_id: user_id, post_id: post.id }),
+      body: JSON.stringify({ user_id: user_id, post_id: post.id, total_likes: likeValue }),
     })
       .then((r) => r.json())
-      .then(setLikeValue(likeValue = likeValue + 1));
+      .then(setLikeValue(likeValue + 1));
   };
 
   const handleToggleComments = () => {
