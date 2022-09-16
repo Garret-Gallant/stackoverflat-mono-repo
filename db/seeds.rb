@@ -50,7 +50,7 @@ end
 
 puts "Creating likes..."
 def create_post_like
-  PostLike.create(user_id: random_user, post_id: random_post)
+  PostLike.create(user_id: random_user, post_id: random_post, total_likes: 0)
 end
 
 def create_comment_like
