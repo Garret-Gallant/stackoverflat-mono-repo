@@ -103,11 +103,13 @@ const SubmittedComments = () => {
       .then((data) => setComments(data));
   }, []);
 
-  return comments.length > 0 ? (
+  if (comments.length > 0) {
+    return
     <div>{comments}</div>
-  ) : (
-    <div>Nothing to display</div>
-  );
+  } 
+  else {
+    return <div>Nothing to display</div>
+  }
 };
 
 const LikedPosts = ({ user }) => {
