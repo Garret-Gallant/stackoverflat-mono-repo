@@ -17,6 +17,8 @@ const Profile = ({ user }) => {
     renderComponent();
   };
 
+  console.log(user)
+
   //Renders the correct component based on the cardToShow state
   const renderComponent = () => {
     switch (cardToShow) {
@@ -27,7 +29,7 @@ const Profile = ({ user }) => {
         setComponent(<SubmittedPosts user={user} />);
         break;
       case "comments":
-        setComponent(<SubmittedComments />);
+        setComponent(<SubmittedComments user={user}/>);
         break;
       case "liked":
         setComponent(<LikedPosts user={user} />);
@@ -94,18 +96,22 @@ const SubmittedPosts = ({ user }) => {
   }
 };
 
-const SubmittedComments = () => {
-  const [comments, setComments] = useState([]);
+const SubmittedComments = ( {user} ) => {
 
-  useEffect(() => {
-    fetch("/me/comments")
-      .then((r) => r.json())
-      .then((data) => setComments(data));
-  }, []);
-
-  if (comments.length > 0) {
-    return
-    <div>{comments}</div>
+  if (user.comments.length > 0) {
+    return (
+    <>
+    {user.comments.map((comment) => { return (
+      <>
+        <br />
+        <div className='border p-4 w-100'>
+          My Comment on someones's post here:
+          <div>{comment.body}</div>
+        </div>
+      </>
+    )})}
+    </>
+    )
   } 
   else {
     return <div>Nothing to display</div>

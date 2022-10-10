@@ -29,7 +29,6 @@ const Post = ({ post, user_id }) => {
         <span className="ml-auto pr-2 py-2">likes: {likeValue}</span>
         <span className="my-2 font-bold">{title}</span>
         <p className="w-128 px-2 h-24 overflow-hidden text-ellipsis">{body}</p>
-        <span>-comment placeholder-</span>
         <button className="mt-auto" onClick={handleToggleComments}>
           {openComments ? "Hide comments" : "Show comments"}
         </button>
